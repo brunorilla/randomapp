@@ -35,12 +35,12 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
     ])
 
 
-    const handleClick = (e: any) => {
-        if(e.attributes['data-card'].value === ""){
-            console.log(e.attributes)
+    const handleClick = (index: number) => {
+        if(boardState[index] === ""){
+            console.log(index)
             setBoard(prevBoard => {
                 const newBoard = [...prevBoard];
-                newBoard[e.attributes['id'].value] = "X";
+                newBoard[index] = "X";
                 return newBoard;
             })
         }
@@ -61,16 +61,16 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
 
 
     return (
-        <div className={props.className}>
+        <StyledBoard>
             {boardState.map((_, index) => (
-                <Card id={index.toString()} handleClick={handleClick} dataCard={boardState[index]}></Card>
+                <Card key={index} id={index.toString()} handleClick={()=>handleClick(index)} dataCard={boardState[index]}></Card>
             ))}
-        </div>
+        </StyledBoard>
     )
 }
 
 
-export const StyledBoard = styled(Board)`
+export const StyledBoard = styled.div`
   width: 90%;
   height: 600px;
   display: flex;
@@ -85,6 +85,7 @@ export const StyledBoard = styled(Board)`
     background-color: whitesmoke;
     display: flex;
     justify-content: center;
+    cursor: pointer;
     h1 {
       font-size: 70px;
     }
