@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import {FC, PropsWithChildren, useState, useEffect} from "react";
 import Card from "./Card";
 import {CardValues} from "../types/CardValues";
+import {Players} from "../types/Players";
+import {NewBoardForm} from "./Forms/NewBoardForm";
 
 export interface BoardProps {
     className: string;
@@ -37,7 +39,6 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
 
     const handleClick = (index: number) => {
         if(boardState[index] === ""){
-            console.log(index)
             setBoard(prevBoard => {
                 const newBoard = [...prevBoard];
                 newBoard[index] = "X";
@@ -56,23 +57,34 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
     }
 
 
-    const [turn, setTurn] = useState();
-    const [winner, setWinner] = useState(null);
+    const [turn, setTurn] = useState<Players | null>(null);
+    const [winner, setWinner] = useState<Players | null>(null);
 
 
     return (
+        turn === null ? <NewBoardForm></NewBoardForm> :
         <StyledBoard>
             {boardState.map((_, index) => (
                 <Card key={index} id={index.toString()} handleClick={()=>handleClick(index)} dataCard={boardState[index]}></Card>
             ))}
         </StyledBoard>
     )
+
+
+
+    function getRandomPlayer(): Players {
+        const players = Object.values(Players);
+        const randomIndex = Math.floor(Math.random() * players.length);
+        return players[randomIndex];
+    }
+
+
 }
 
 
 export const StyledBoard = styled.div`
-  width: 90%;
-  height: 600px;
+  width: 330px;
+  min-height: 330px;
   display: flex;
   justify-content: center;
   margin: 20px auto 0 auto;
@@ -86,9 +98,6 @@ export const StyledBoard = styled.div`
     display: flex;
     justify-content: center;
     cursor: pointer;
-    h1 {
-      font-size: 70px;
-    }
   }
 `
 

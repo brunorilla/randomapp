@@ -5,15 +5,16 @@ import {Nav, StyledNav} from "../Nav/Nav";
 const { Header, Content, Sider, Footer} = Layout;
 
 const layoutStyle: React.CSSProperties = {
-    height: '100vh',
+    minHeight: '100vh',
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    flex: 1
 }
 
 const headerStyle: React.CSSProperties = {
     textAlign: 'center',
     color: '#fff',
-    height: '100px',
+    minHeight: '100px',
     paddingInline: 50,
     lineHeight: '64px',
     backgroundColor: '#7dbcea',
@@ -38,6 +39,7 @@ const footerStyle: React.CSSProperties = {
     textAlign: 'center',
     color: '#fff',
     backgroundColor: '#7dbcea',
+    flex: 1
 };
 
 interface MainLayoutProps {
