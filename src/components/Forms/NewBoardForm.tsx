@@ -64,7 +64,7 @@ export const NewBoardForm: FC<NewBoardFormProps> = (props) => {
                     <StyledButtonsWrapper>
                         <AntdForm.Item>
                             <Button type="default" htmlType="submit" disabled={formikProps.isSubmitting}>
-                                Submit
+                                Play
                             </Button>
                         </AntdForm.Item>
                         <AntdForm.Item>
