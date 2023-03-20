@@ -33,19 +33,18 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
 
     const dispatch = useDispatch();
 
-
     console.log(player1Points)
     console.log(player2Points)
 
     const playersInitialState = {
         player1: {
             name: '',
-            points: 0,
+            points: player1Points,
             symbol: 'X'
         },
         player2: {
             name: '',
-            points: 0,
+            points: player2Points,
             symbol: 'O'
 
         }
@@ -98,6 +97,7 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
         setPlayers(playersInitialState)
         setBoard(boardInitialState)
         setWinner(null)
+        dispatch({type: 'RESET_POINTS'})
         return;
     }
 
@@ -113,13 +113,12 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
     useEffect(() => {
         let win = checkForWin(boardState)
         if (win !== null) {
-            console.log("Winner " + win);
             setWinner(win === "X" ? Players.One : Players.Two)
             setPlayers((prevPlayers) => ({
                 ...prevPlayers,
                 [win === "X" ? "player1" : "player2"]: {
                     ...prevPlayers[win === "X" ? "player1" : "player2"],
-                    points: prevPlayers[win === "X" ? "player1" : "player2"].points + 1
+                    points: prevPlayers[win === "X" ? "player1" : "player2"].points
                 }
             }));
             if (win === "X") {
@@ -135,13 +134,13 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
         {
             key: 'players',
             name: players.player1.name,
-            points: players.player1.points,
+            points: player1Points,
 
         },
         {
             key: 'players',
             name: players.player2.name,
-            points: players.player2.points,
+            points: player2Points,
         },
     ];
 

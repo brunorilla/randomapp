@@ -11,8 +11,8 @@ export const Nav: FC = () => {
             <ul>
                 <li><Link to={"/"}><Button>Home</Button></Link></li>
                 <li><Link to={"/game"}><Button>Game</Button></Link></li>
-                {/*<li><Link to={""}></Link></li>*/}
-                {/*<li><Link to={""}></Link></li>*/}
+                <li><Link to={"/weather"}><Button>Weather App</Button></Link></li>
+                <li><Link to={"/countries"}><Button>Countries App</Button></Link></li>
             </ul>
         </StyledNav>
     )

@@ -6,18 +6,26 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {MainLayout} from "./components/Home/MainLayout";
 import {Provider} from 'react-redux'
 import store from './stores'
+import {Weather} from "./components/Weather/Weather";
+import {ApolloProvider} from "@apollo/client";
+import client from "./client";
+import {CountriesWrapper} from "./components/Countries/CountriesWrapper";
+
 
 export const App: FC = () => {
     return (
-        <Provider store={store}>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<MainLayout></MainLayout>}></Route>
-                    <Route path="/game" element={<MainLayout component={Board}/>}/>
-
-                </Routes>
-            </Router>
-        </Provider>
+        <ApolloProvider client={client}>
+            <Provider store={store}>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<MainLayout></MainLayout>}> </Route>
+                        <Route path="/weather" element={<MainLayout component={Weather}></MainLayout>}></Route>
+                        <Route path="/game" element={<MainLayout component={Board}/>}/>
+                        <Route path="/countries" element={<MainLayout component={CountriesWrapper}/>}></Route>
+                    </Routes>
+                </Router>
+            </Provider>
+        </ApolloProvider>
     );
 }
 

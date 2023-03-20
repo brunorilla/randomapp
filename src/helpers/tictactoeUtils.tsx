@@ -25,6 +25,8 @@ export const checkForWin = (boardState: string[]) => {
         }
     }
 
+    console.log(winningRows)
+
     // check if any row has three of the same symbol
     for (let i = 0; i < winningRows.length; i++) {
         const [a, b, c] = winningRows[i];

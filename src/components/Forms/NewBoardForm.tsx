@@ -25,26 +25,7 @@ export const NewBoardForm: FC<NewBoardFormProps> = (props) => {
         player2: Yup.string().required('Name is required')
     })
     return (<StyledNewBoardForm>
-        {/*
-        <Formik
-            initialValues={{player1: '', player2: ''}}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-        >
-            {({ handleSubmit, isSubmitting, resetForm}) => (
-                <Form onSubmit={handleSubmit}>
-                    <Field type="text" name="player1"/>
-                    <Field type="text" name="player2"/>
-                    <button type="submit">
-                        Submit
-                    </button>
-                    <button type={"reset"} onClick={()=>resetForm()}>
-                        Reset
-                    </button>
-                </Form>
-            )}
-        </Formik>
-        */}
+
         <Formik initialValues={{player1: '', player2: ''}}
                 validationSchema={validationSchema}
                 onSubmit={(values, {setSubmitting, resetForm}) => onSubmit(values, setSubmitting, resetForm)}>
