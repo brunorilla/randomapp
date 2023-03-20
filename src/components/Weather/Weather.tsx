@@ -3,7 +3,6 @@ import {getWeatherData} from "../../globals/utils";
 import {Content} from "antd/lib/layout/layout";
 import {Button, Descriptions, Input, Layout} from "antd";
 import styled from "styled-components";
-import {useWeatherImage} from "./WeatherHooks.";
 import Title from "antd/es/typography/Title";
 
 interface WeatherData {

@@ -23,6 +23,7 @@ function CountriesForm({onSubmit}: CountriesFormProps) {
                 <div>
                 <label htmlFor="countryName">Continente</label>
                 <Select
+                    defaultValue={"SA"}
                     className="countrySelect"
                     id="countryName"
                     value={formik.values.countryName}
@@ -30,7 +31,7 @@ function CountriesForm({onSubmit}: CountriesFormProps) {
                     onBlur={formik.handleBlur}
                 >
 
-
+                    <Option value="">-- Elija un continente --</Option>
                     <Option value="SA">Sudamérica</Option>
                     <Option value="NA">Norteamérica</Option>
                     <Option value="AF">Africa</Option>
