@@ -160,7 +160,7 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
     return (
         <>
             <Content>
-                <Table dataSource={dataSource} columns={columns} pagination={false}/>
+                <StyledTable dataSource={dataSource} columns={columns} pagination={false}/>
             </Content>
 
             {turn === null ? (
@@ -187,7 +187,7 @@ export const Board: FC<BoardProps> = (props: PropsWithChildren<BoardProps>) => {
                     <Header style={{backgroundColor: "white"}}>
                         <h2>THE WINNER
                             IS: {winner === Players.One ? `${players.player1.name}` : `${players.player2.name}`}</h2>
-                        <Content style={{display: "flex", justifyContent: "space-evenly"}}>
+                        <Content style={{display: "flex", justifyContent: "space-evenly", margin: "30px auto"}}>
                             <Button onClick={handleRestartGame}>Restart Game</Button>
                             <Button onClick={handleNewRound}>New Round</Button>
                         </Content>
@@ -213,10 +213,11 @@ export const StyledBoard = styled.div`
   min-height: 330px;
   display: flex;
   justify-content: center;
-  margin: 20px auto 0 auto;
+  margin: 20px auto 20px;
   box-sizing: border-box;
   background-color: lightblue;
   flex-wrap: wrap;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 
   .card {
     flex-basis: calc(33.33% - 20px);
@@ -229,3 +230,9 @@ export const StyledBoard = styled.div`
 `
 
 
+
+export const StyledTable = styled(Table)`
+    width: 50%;
+    margin: 30px auto;
+    
+`

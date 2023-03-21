@@ -10,6 +10,7 @@ import {Weather} from "./components/Weather/Weather";
 import {ApolloProvider} from "@apollo/client";
 import client from "./client";
 import {CountriesWrapper} from "./components/Countries/CountriesWrapper";
+import SignInWithGoogleButton from "./components/Login/Login";
 
 
 export const App: FC = () => {
@@ -18,7 +19,7 @@ export const App: FC = () => {
             <Provider store={store}>
                 <Router>
                     <Routes>
-                        <Route path="/" element={<MainLayout></MainLayout>}> </Route>
+                        <Route path="/" element={<MainLayout component={SignInWithGoogleButton}></MainLayout>}> </Route>
                         <Route path="/weather" element={<MainLayout component={Weather}></MainLayout>}></Route>
                         <Route path="/game" element={<MainLayout component={Board}/>}/>
                         <Route path="/countries" element={<MainLayout component={CountriesWrapper}/>}></Route>

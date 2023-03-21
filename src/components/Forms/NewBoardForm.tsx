@@ -61,10 +61,10 @@ export const NewBoardForm: FC<NewBoardFormProps> = (props) => {
 }
 
 const StyledNewBoardForm = styled.div`
-  width: 30%;
+  width: 100%;
   margin: 20px auto;
   display: flex;
-
+  justify-content: center;
   label {
     color: white !important;
     font-weight: bold;

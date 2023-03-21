@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {getWeatherData} from "../../globals/utils";
 import {Content} from "antd/lib/layout/layout";
 import {Button, Descriptions, Input, Layout} from "antd";
@@ -15,6 +15,7 @@ interface WeatherData {
     weather: {
         description: string;
         icon: string;
+        main: string;
     }[];
 }
 
@@ -37,7 +38,7 @@ export const Weather = () => {
         <WeatherWrapper>
             <Layout>
                 <Title>Dr. Tiempo</Title>
-                <Title level={3}> Pregúntele al Dr. qué tiempo hace en su ciudad de preferencia</Title>
+                <Title level={4}> Pregúntele al Dr. qué tiempo hace en su ciudad de preferencia</Title>
             </Layout>
             <form onSubmit={handleSubmit}>
                 <Input
@@ -67,9 +68,10 @@ export const Weather = () => {
     );
 }
 
+
 export const WeatherWrapper = styled(Content)`
   margin: 20px auto;
-  width: 30%;
+  width: 40%;
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -78,11 +80,14 @@ export const WeatherWrapper = styled(Content)`
   background-color: #FFFFFF;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
   form {
     width: 100%;
-    margin: 20px 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
     button {
-      margin: 10px 0;
+      margin: 10px 0 0 20px;
     }
   }
 `;
@@ -92,7 +97,9 @@ export const StyledWeather = styled.div`
   justify-content: center;
   flex-direction: column;
   align-content: center;
-  width:100%;
+  width: 100%;
+  margin: 10px;
+
   div {
     display: flex;
     flex-direction: column;

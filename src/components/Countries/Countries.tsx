@@ -37,14 +37,18 @@ export const CountriesList = ({countryName}: CountriesListProps) => {
             key: countryData && !countryLoad ? countryData.country.countryCode : ' ',
             name: countryData && !countryLoad ? countryData.country.name : '',
             currency: countryData && !countryLoad ? countryData.country.currency : '',
-            languages: countryData && !countryLoad ? countryData.country.languages.map((lang: any) => lang.name + "  " ) : ''
+            languages: countryData && !countryLoad ? countryData.country.languages.map((lang: any) => lang.name + "  " ) : '',
+            phonecode: countryData && !countryLoad ? countryData.country.phone : '',
+            numberofstates: countryData && !countryLoad ? countryData.country.states.length : ''
         }
     ]
 
     const columns = [
         {title: 'País', dataIndex: 'name', key: 'name'},
         {title: 'Moneda', dataIndex: 'currency', key: 'currency'},
-        {title: 'Idioma', dataIndex: 'languages', key: 'languages'}
+        {title: 'Idioma', dataIndex: 'languages', key: 'languages'},
+        {title: 'Código Telefónico', dataIndex: 'phonecode', key: 'phonecode'},
+        {title: 'Cantidad de Estados/Provincias o Territorios', dataIndex: 'numberofstates', key: 'numberofstates'}
     ]
 
 
@@ -60,7 +64,7 @@ export const CountriesList = ({countryName}: CountriesListProps) => {
                 selectedCountry && (
                     (countryLoad && <Spin indicator={antIcon}></Spin>) ||
                     (countryError && <h1>{countryError?.message}</h1>) ||
-                    (!countryLoad && countryData && <StyledCountryTable><Table dataSource={countryDataSource} columns={columns}/></StyledCountryTable>))
+                    (!countryLoad && countryData && <StyledCountryTable><Table className={"countryTable"} pagination={false} dataSource={countryDataSource} columns={columns}/></StyledCountryTable>))
             }
         </>
     )
@@ -97,6 +101,7 @@ export const StyledList = styled.ul`
 
 export const StyledCountryTable = styled.div`
   width: 80%;
+  min-height: 600px;
   margin: 30px auto;
   justify-content: center;
   align-items: center;
