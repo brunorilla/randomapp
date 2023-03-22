@@ -1,16 +1,20 @@
-import React from "react";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
+import React, {useContext} from "react";
 import "firebase/auth";
-import {initializeApp} from 'firebase/app'
-import {firebaseConfig} from "../../firebaseconfig";
 import { PoweroffOutlined } from '@ant-design/icons';
 import {Button} from "antd";
+import {AuthContext} from "../auth/AuthProvider";
 
-const app = initializeApp(firebaseConfig)
 
 
 
 const SignInWithGoogleButton: React.FC = () => {
+    const { signInWithGoogle } = useContext(AuthContext);
+
+    const handleSignInWithGoogle = async () => {
+        await signInWithGoogle();
+        // any additional logic to handle successful sign-in
+    };
+/*
     const handleSignInWithGoogle = async () => {
         const provider = new GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -22,6 +26,7 @@ const SignInWithGoogleButton: React.FC = () => {
                 const token = credential?.accessToken;
                 // The signed-in user info.
                 const user = result.user;
+                console.log(user);
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
             }).catch((error) => {
@@ -36,6 +41,7 @@ const SignInWithGoogleButton: React.FC = () => {
         });
 
     };
+    */
 
     return (
         <Button
@@ -45,7 +51,14 @@ const SignInWithGoogleButton: React.FC = () => {
             size={"large"}
         >Sign In With Google</Button>
     );
+
+
 };
+
+
+
+
+
 
 export default SignInWithGoogleButton;
 

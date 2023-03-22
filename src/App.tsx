@@ -11,22 +11,26 @@ import {ApolloProvider} from "@apollo/client";
 import client from "./client";
 import {CountriesWrapper} from "./components/Countries/CountriesWrapper";
 import SignInWithGoogleButton from "./components/Login/Login";
+import {AuthProvider} from "./components/auth/AuthProvider";
 
 
 export const App: FC = () => {
     return (
-        <ApolloProvider client={client}>
-            <Provider store={store}>
-                <Router>
-                    <Routes>
-                        <Route path="/" element={<MainLayout component={SignInWithGoogleButton}></MainLayout>}> </Route>
-                        <Route path="/weather" element={<MainLayout component={Weather}></MainLayout>}></Route>
-                        <Route path="/game" element={<MainLayout component={Board}/>}/>
-                        <Route path="/countries" element={<MainLayout component={CountriesWrapper}/>}></Route>
-                    </Routes>
-                </Router>
-            </Provider>
-        </ApolloProvider>
+        <AuthProvider>
+            <ApolloProvider client={client}>
+                <Provider store={store}>
+                    <Router>
+                        <Routes>
+                            <Route path="/"
+                                   element={<MainLayout component={SignInWithGoogleButton}></MainLayout>}> </Route>
+                            <Route path="/weather" element={<MainLayout component={Weather}></MainLayout>}></Route>
+                            <Route path="/game" element={<MainLayout component={Board}/>}/>
+                            <Route path="/countries" element={<MainLayout component={CountriesWrapper}/>}></Route>
+                        </Routes>
+                    </Router>
+                </Provider>
+            </ApolloProvider>
+        </AuthProvider>
     );
 }
 

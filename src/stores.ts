@@ -1,6 +1,4 @@
-import {createStore, combineReducers, applyMiddleware, compose} from "redux";
-import thunk from 'redux-thunk';
-import {composeWithDevTools} from 'redux-devtools-extension';
+import { configureStore } from '@reduxjs/toolkit'
 
 
 export interface TicTacToeState {
@@ -54,13 +52,10 @@ function pointsReducer(state = initialState.points, action: TicTacToeAction) {
 }
 
 
-const rootReducer = combineReducers({
-    points: pointsReducer
+const store = configureStore({
+    reducer: {
+        points: pointsReducer,
+    }
 })
-
-const enhancers = compose(applyMiddleware(thunk), composeWithDevTools());
-
-const store = createStore(rootReducer, enhancers);
-
 
 export default store;
